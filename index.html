@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaBio AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        body { background-color: #f7fafc; }
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .btn { transition: all 0.2s; }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-4xl font-bold text-center mb-6 text-gray-800">InstaBio AI</h1>
+        <p class="text-center text-gray-600 mb-8">Generate creative, personalized Instagram bios instantly!</p>
+        
+        <div class="mb-6">
+            <label for="keywords" class="block text-gray-700 text-sm font-bold mb-2">Keywords (e.g., dog lover, coffee addict):</label>
+            <input type="text" id="keywords" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter keywords, separated by commas">
+        </div>
+        
+        <div class="mb-8">
+            <label for="tone" class="block text-gray-700 text-sm font-bold mb-2">Select Tone:</label>
+            <select id="tone" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="witty">Witty</option>
+                <option value="inspirational">Inspirational</option>
+                <option value="professional">Professional</option>
+                <option value="funny">Funny</option>
+                <option value="casual">Casual</option>
+            </select>
+        </div>
+        
+        <button id="generateBtn" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mb-6">Generate Bio</button>
+
+        <div id="results" class="border-t pt-6 mt-6 border-gray-200 hidden">
+            <h2 class="text-2xl font-bold mb-4 text-gray-700">Your New Bios:</h2>
+            <div id="bioOutput" class="space-y-4"></div>
+            <button id="checkoutBtn" class="btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full mt-6">Get Full Access - $2.99</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            const keywords = document.getElementById('keywords').value;
+            const tone = document.getElementById('tone').value;
+            const bioOutput = document.getElementById('bioOutput');
+            const resultsDiv = document.getElementById('results');
+            bioOutput.innerHTML = '<p class="text-center text-gray-500">Generating...</p>';
+            resultsDiv.classList.remove('hidden');
+
+            // In a real app, this would be an API call to your backend/OpenAI.
+            // For this example, we'll simulate a response.
+            await new Promise(resolve => setTimeout(resolve, 1500)); 
+            
+            const mockBios = [
+                `😎 ${keywords.split(',')[0] || 'Enthusiast'} | Living my best life with a ${tone} vibe. ✨`,
+                `Fueled by ${keywords.split(',')[1] || 'passion'} & coffee. Crafting a ${tone} narrative, one post at a time.`,
+                `Your daily dose of ${keywords.split(',')[0] || 'inspiration'}. Striving for greatness with a ${tone} twist.`
+            ];
+            
+            bioOutput.innerHTML = mockBios.map(bio => 
+                `<div class="p-4 border rounded-md bg-gray-50 flex justify-between items-center">
+                    <p class="text-gray-800">${bio}</p>
+                    <button class="copyBtn text-blue-500 hover:text-blue-700 font-semibold text-sm" data-bio="${bio}">Copy</button>
+                </div>`
+            ).join('');
+
+            document.querySelectorAll('.copyBtn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    navigator.clipboard.writeText(e.target.dataset.bio);
+                    alert('Bio copied!');
+                });
+            });
+        });
+
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            alert('Redirecting to Stripe Checkout for $2.99! (Simulated)');
+            // In a real app, you would initiate a Stripe Checkout session here.
+        });
+    </script>
+</body>
+</html>
