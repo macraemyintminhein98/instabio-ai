@@ -4,69 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InstaBio AI - Generate Your Perfect Instagram Bio</title>
-    <meta name="description" content="InstaBio AI helps you create engaging and creative Instagram bios instantly.">
+    <meta name="description" content="Generate creative and catchy Instagram bios instantly with AI. Just enter keywords!">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #8e44ad; --secondary: #f4f4f4; --text: #333; --light-text: #666; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: var(--secondary); color: var(--text); line-height: 1.6; }
-        .container { max-width: 900px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; }
-        h1, h2 { color: var(--primary); }
-        p { margin-bottom: 20px; color: var(--light-text); }
-        textarea { width: calc(100% - 40px); padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; min-height: 100px; resize: vertical; }
-        button { background-color: var(--primary); color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: 600; transition: background-color 0.3s ease; }
-        button:hover { background-color: #6c3483; }
-        #result { margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 1px dashed #ddd; border-radius: 5px; text-align: left; min-height: 50px; }
-        .price { font-size: 2.2em; font-weight: 600; color: var(--primary); margin-top: 30px; margin-bottom: 10px; }
-        .price span { font-size: 0.6em; color: var(--light-text); font-weight: 400; }
-        footer { text-align: center; padding: 20px; color: var(--light-text); font-size: 0.9em; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background-color: #f7f9fc; color: #333; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .container { background-color: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); max-width: 600px; width: 100%; text-align: center; }
+        h1 { color: #8a2be2; margin-bottom: 25px; font-size: 2.2em; }
+        p { margin-bottom: 30px; line-height: 1.6; color: #555; }
+        .input-group { margin-bottom: 25px; }
+        input[type="text"] { width: calc(100% - 24px); padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; margin-bottom: 15px; }
+        button { background-color: #8a2be2; color: white; padding: 14px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.05em; font-weight: 600; transition: background-color 0.3s ease; }
+        button:hover { background-color: #6a1ba3; }
+        .bio-output { background-color: #f0f4f8; border-radius: 8px; padding: 20px; text-align: left; min-height: 100px; white-space: pre-wrap; font-size: 1.1em; color: #444; border: 1px dashed #c0c0c0; display: none; margin-top: 25px; }
+        .loading { display: none; color: #8a2be2; margin-top: 15px; }
+        footer { margin-top: 40px; font-size: 0.9em; color: #777; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>InstaBio AI</h1>
-        <p>Craft the perfect Instagram bio with AI. Just tell us about yourself!</p>
-        <textarea id="keywords" placeholder="E.g., 'Travel blogger, foodie, adventurer, dog mom'" rows="4"></textarea>
-        <button id="generateBtn">Generate Bios</button>
-        <div id="result">Your generated bios will appear here.</div>
-        <p class="price">$9.99 <span>for 20 generations</span></p>
-        <button id="buyBtn">Buy Now</button>
+        <h1>InstaBio AI ✨</h1>
+        <p>Generate a captivating Instagram bio in seconds! Tell us about yourself and let AI craft the perfect bio.</p>
+        <div class="input-group">
+            <input type="text" id="keywordsInput" placeholder="e.g., photographer, travel, foodie, entrepreneur">
+            <button id="generateBioBtn" onclick="generateBio()">Generate Bio</button>
+        </div>
+        <div class="loading" id="loadingMessage">Generating awesome bios...</div>
+        <div class="bio-output" id="bioOutput"></div>
+        <script>
+            function generateBio() {
+                const keywords = document.getElementById('keywordsInput').value;
+                const outputDiv = document.getElementById('bioOutput');
+                const loadingMsg = document.getElementById('loadingMessage');
+                
+                if (!keywords) {
+                    outputDiv.style.display = 'block';
+                    outputDiv.textContent = 'Please enter some keywords!';
+                    return;
+                }
+
+                outputDiv.style.display = 'none';
+                loadingMsg.style.display = 'block';
+
+                // In a real application, this would be an API call to your backend
+                // For demo purposes, we simulate a delay and output placeholder bios.
+                setTimeout(() => {
+                    loadingMsg.style.display = 'none';
+                    outputDiv.style.display = 'block';
+                    const bios = [
+                        `📸 Capturing moments & chasing sunsets | Adventure seeker | Explorer at heart | Let's connect! ✨`,
+                        `Passionate ${keywords.split(',')[0] || 'creator'} | Storyteller through my lens | Spreading positive vibes & wanderlust.`, 
+                        `Crafting beautiful visuals & living life vibrantly | Always learning, always growing. Find me where the wild things are.`
+                    ];
+                    outputDiv.innerHTML = bios.map(bio => `<p>${bio}</p>`).join('<hr style="border-color:#e0e0e0; margin:15px 0;">');
+                }, 2000); // Simulate API call delay
+            }
+        </script>
     </div>
     <footer>
         &copy; 2023 InstaBio AI. All rights reserved.
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const generateBtn = document.getElementById('generateBtn');
-            const keywordsInput = document.getElementById('keywords');
-            const resultDiv = document.getElementById('result');
-            const buyBtn = document.getElementById('buyBtn');
-
-            generateBtn.addEventListener('click', async () => {
-                const keywords = keywordsInput.value.trim();
-                if (!keywords) {
-                    resultDiv.innerHTML = '<p style="color:red;">Please enter some keywords or a niche!</p>';
-                    return;
-                }
-                resultDiv.innerHTML = '<p>Generating amazing bios...</p>';
-                
-                // Placeholder for actual API call
-                // In a real app, this would call your backend which then calls OpenAI
-                setTimeout(() => {
-                    const mockBios = [
-                        `Wanderlust & Coffee ☕ | Documenting adventures one bite &#x1F35B; at a time | Dog mom to Max &#x1F436; | Life's too short for boring bios! &#x2728;`,
-                        `From cityscapes to mountain peaks &#x1F304; | Exploring the world with a camera & good vibes | Sharing my journey, one story at a time. &#x1F4D6;`,
-                        `Fuelled by espresso & dreams &#x1F33F; | Your guide to delicious food & unforgettable trips &#x1F30C; | Let's connect and create! &#x1F4DD;`
-                    ];
-                    resultDiv.innerHTML = mockBios.map(bio => `<p>${bio}</p>`).join('<hr>');
-                }, 1500);
-            });
-
-            buyBtn.addEventListener('click', () => {
-                // Placeholder for Stripe Checkout integration
-                alert('Redirecting to secure payment... (Stripe integration would go here)');
-                window.location.href = '#'; // Replace with actual Stripe checkout URL
-            });
-        });
-    </script>
 </body>
 </html>
