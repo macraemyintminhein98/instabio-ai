@@ -1,24 +1,18 @@
 # InstaBio AI
 
-InstaBio AI is an AI-powered Instagram bio generator designed to help small business owners, influencers, content creators, and individuals quickly craft engaging and creative bios. Simply input your keywords or niche, and our AI will suggest tailored bio options.
+**AI-Powered Instagram Bio Generator**
 
-## Features
+Craft compelling and keyword-optimized Instagram bios instantly. Simply input your niche, keywords, and desired tone, and let AI do the rest. Perfect for small businesses, influencers, and personal brands.
 
-*   AI-powered bio generation
-*   User-friendly interface
-*   One-time purchase for 20 bio generations
+## Features:
+*   Generate engaging Instagram bios.
+*   Optimize with your chosen keywords.
+*   Select a custom tone (professional, friendly, humorous, etc.).
+*   Simple, intuitive interface.
 
-## Get Started
+## How it Works (Conceptual):
+1.  Enter your details.
+2.  Proceed to secure payment via Stripe Checkout.
+3.  Receive a pack of unique, AI-generated bios.
 
-1.  Enter your keywords/niche in the text area.
-2.  Click 'Generate Bios'.
-3.  Review the suggestions and find your perfect bio!
-4.  Purchase generations to unlock more bio ideas.
-
-## Tech Stack (Planned)
-
-*   **Frontend:** Next.js/React
-*   **Backend:** Node.js (for API integration)
-*   **AI:** OpenAI GPT API (or similar)
-*   **Payments:** Stripe Checkout
-*   **Deployment:** Vercel
+Built with Next.js/React, integrated with OpenAI GPT-3.5-turbo, and powered by Stripe for payments and Supabase for database management (in a live environment).
